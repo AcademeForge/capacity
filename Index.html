@@ -3,573 +3,587 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Capacity — Full App Prototype</title>
+<title>Capacity — Complete App Prototype</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg:       #F7F6F3;
-    --surface:  #FFFFFF;
-    --border:   #E4E2DE;
-    --border-s: #C8C5BF;
-    --text:     #1A1916;
-    --text-2:   #5C5A56;
-    --text-3:   #9B9892;
-    --accent:   #3B6D11;
-    --accent-bg:#EFF6E8;
-    --green:    #639922;
-    --green-bg: #EFF6E8;
-    --green-bd: #3B6D11;
-    --amber:    #BA7517;
-    --amber-bg: #FEF3E2;
-    --amber-bd: #8A5510;
-    --coral:    #D85A30;
-    --coral-bg: #FEF0EC;
-    --red:      #A32D2D;
-    --red-bg:   #FCEBEB;
-    --red-bd:   #791F1F;
-    --pro:      #7C3AED;
-    --pro-bg:   #F3EEFF;
-    --danger:   #A32D2D;
-    --radius:   12px;
-    --radius-s: 8px;
-    --shadow:   0 2px 16px rgba(0,0,0,0.08);
-  }
+:root {
+  --bg:         #F6F5F2;
+  --surface:    #FFFFFF;
+  --border:     #E3E1DC;
+  --border-s:   #C6C3BC;
+  --text:       #1A1916;
+  --text-2:     #5A5855;
+  --text-3:     #9A9793;
+  --accent:     #3B6D11;
+  --accent-l:   #EFF6E8;
+  --accent-m:   #639922;
+  --green-bd:   #3B6D11;
+  --amber:      #B97316;
+  --amber-bg:   #FEF3E2;
+  --amber-bd:   #8A5210;
+  --coral:      #D75A2E;
+  --coral-bg:   #FEF0EB;
+  --red:        #A12C2C;
+  --red-bg:     #FCEBEB;
+  --red-bd:     #781E1E;
+  --pro:        #7C3AED;
+  --pro-bg:     #F3EEFF;
+  --danger:     #A12C2C;
+  --r:          12px;
+  --r-s:        8px;
+}
 
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-  }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* ─── LAYOUT ─────────────────────────────────────── */
-  .page-wrap {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-  }
+/* ── PAGE ─────────────────────────────────────── */
+.page { max-width: 1400px; margin: 0 auto; padding: 44px 28px 100px; }
 
-  .site-header {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-  .site-header .logo-ring {
-    width: 52px; height: 52px; border-radius: 50%;
-    border: 3px solid var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 12px;
-  }
-  .site-header .logo-dot {
-    width: 18px; height: 18px; border-radius: 50%;
-    background: var(--accent);
-  }
-  .site-header h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; }
-  .site-header p  { font-size: 14px; color: var(--text-2); margin-top: 4px; }
+.site-header { text-align: center; margin-bottom: 56px; }
+.site-header .logo {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2.5px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.site-header .logo-dot { width: 16px; height: 16px; border-radius: 50%; background: var(--accent); }
+.site-header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+.site-header p  { font-size: 14px; color: var(--text-2); margin-top: 4px; }
 
-  .section-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--text-3);
-    margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .section-label::after {
-    content: ''; flex: 1; height: 1px; background: var(--border);
-  }
+/* ── SECTION LABEL ────────────────────────────── */
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3);
+  margin: 0 0 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::after { content:''; flex:1; height:1px; background:var(--border); }
 
-  .screen-row {
-    display: flex; gap: 24px; flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-bottom: 48px;
-  }
+/* ── SCREEN ROW ───────────────────────────────── */
+.screen-row {
+  display: flex; gap: 28px; flex-wrap: wrap;
+  align-items: flex-start; margin-bottom: 56px;
+}
 
-  /* ─── PHONE SHELL ────────────────────────────────── */
-  .phone {
-    width: 300px; flex-shrink: 0;
-    background: #1A1916;
-    border-radius: 36px;
-    padding: 12px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
-    position: relative;
-  }
-  .phone-label {
-    font-size: 11px; font-weight: 600; color: var(--text-3);
-    text-align: center; margin-bottom: 10px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-  }
-  .phone-notch {
-    width: 90px; height: 22px;
-    background: #1A1916;
-    border-radius: 0 0 14px 14px;
-    margin: 0 auto -2px;
-    position: relative; z-index: 2;
-  }
-  .screen {
-    background: var(--surface);
-    border-radius: 26px;
-    min-height: 580px;
-    overflow: hidden;
-    display: flex; flex-direction: column;
-    padding: 20px 16px 24px;
-    position: relative;
-  }
+/* ── PHONE SHELL ──────────────────────────────── */
+.phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 
-  /* ─── SHARED COMPONENTS ──────────────────────────── */
-  .input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border-s);
-    border-radius: var(--radius-s);
-    font-size: 14px; font-family: inherit;
-    color: var(--text);
-    background: var(--bg);
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .input:focus { border-color: var(--accent); }
-  .input::placeholder { color: var(--text-3); }
+.phone-cap {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-3);
+}
+.phone-sub {
+  font-size: 11px; color: var(--text-3); text-align: center;
+  max-width: 260px; line-height: 1.4;
+}
 
-  .btn {
-    width: 100%;
-    padding: 11px 16px;
-    border-radius: var(--radius-s);
-    font-size: 14px; font-weight: 500;
-    font-family: inherit; cursor: pointer;
-    border: 1px solid var(--border-s);
-    background: var(--surface);
-    color: var(--text);
-    transition: opacity 0.15s;
-  }
-  .btn:hover { opacity: 0.85; }
-  .btn-primary {
-    background: var(--accent);
-    color: #fff; border-color: var(--accent);
-  }
-  .btn-ghost {
-    background: none; border: 1px solid var(--border-s);
-    color: var(--text-2);
-  }
-  .btn-danger {
-    background: none; border: none;
-    color: var(--danger); font-size: 14px;
-    font-family: inherit; cursor: pointer;
-  }
+.phone {
+  width: 294px; flex-shrink: 0;
+  background: #18181B;
+  border-radius: 40px;
+  padding: 10px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06) inset,
+    0 12px 48px rgba(0,0,0,0.22);
+  position: relative;
+}
+.phone-notch {
+  width: 88px; height: 20px;
+  background: #18181B;
+  border-radius: 0 0 14px 14px;
+  margin: 0 auto -2px;
+  position: relative; z-index: 2;
+}
 
-  .field-label {
-    font-size: 12px; font-weight: 500; color: var(--text-2);
-    display: block; margin-bottom: 6px;
-  }
-  .field-wrap { margin-bottom: 14px; }
+/* ── SCREEN ───────────────────────────────────── */
+/* ALL SCREENS ARE EXACTLY 568px TALL */
+.screen {
+  background: var(--surface);
+  border-radius: 32px;
+  height: 568px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px 20px;
+  position: relative;
+}
 
-  .link-text {
-    color: var(--accent); font-weight: 500; cursor: pointer;
-  }
-  .link-text:hover { text-decoration: underline; }
+/* ── SHARED COMPONENTS ────────────────────────── */
+.input {
+  width: 100%; padding: 10px 12px;
+  border: 1.5px solid var(--border-s);
+  border-radius: var(--r-s);
+  font-size: 13px; font-family: inherit; color: var(--text);
+  background: var(--bg); outline: none;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+}
+.input:focus { border-color: var(--accent); background: #fff; }
+.input::placeholder { color: var(--text-3); }
 
-  .avatar {
-    width: 38px; height: 38px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 600;
-    flex-shrink: 0;
-  }
+.btn {
+  width: 100%; padding: 11px 16px;
+  border-radius: var(--r-s);
+  font-size: 14px; font-weight: 500; font-family: inherit;
+  cursor: pointer; border: 1.5px solid var(--border-s);
+  background: var(--surface); color: var(--text);
+  transition: opacity 0.15s, transform 0.1s;
+  -webkit-appearance: none;
+  text-align: center;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-ghost   { background: none; border: 1.5px solid var(--border-s); color: var(--text-2); }
+.btn-danger  { background: none; border: none; color: var(--danger); font-size: 14px; font-family: inherit; cursor: pointer; }
 
-  .divider { height: 1px; background: var(--border); margin: 12px 0; }
+.field-wrap { margin-bottom: 12px; }
+.field-label { font-size: 12px; font-weight: 500; color: var(--text-2); display: block; margin-bottom: 5px; }
+.field-hint  { font-size: 11px; margin-top: 4px; }
 
-  .row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 0;
-  }
-  .row-border { border-bottom: 1px solid var(--border); }
+.link { color: var(--accent); font-weight: 500; cursor: pointer; }
+.link:hover { text-decoration: underline; }
 
-  .chevron { font-size: 16px; color: var(--text-3); }
+.avatar {
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-weight: 600; flex-shrink: 0;
+}
 
-  .tag {
-    font-size: 11px; padding: 3px 10px; border-radius: 999px;
-    font-weight: 500;
-  }
-  .tag-pro   { background: var(--pro-bg); color: var(--pro); }
-  .tag-green { background: var(--green-bg); color: var(--accent); }
+.divider { height: 1px; background: var(--border); }
 
-  .dot-step { width: 6px; height: 6px; border-radius: 50%; }
-  .steps { display: flex; gap: 5px; margin-bottom: 22px; }
+.row { display: flex; align-items: center; gap: 10px; padding: 9px 0; }
+.row-b { border-bottom: 1px solid var(--border); }
 
-  .toggle-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
-  .toggle {
-    width: 40px; height: 24px; border-radius: 12px;
-    display: flex; align-items: center; padding: 2px;
-    flex-shrink: 0;
-  }
-  .toggle-on  { background: var(--accent); justify-content: flex-end; }
-  .toggle-off { background: var(--border-s); justify-content: flex-start; }
-  .toggle-thumb {
-    width: 18px; height: 18px; border-radius: 50%; background: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
+.toggle {
+  width: 38px; height: 22px; border-radius: 11px;
+  display: flex; align-items: center; padding: 2px; flex-shrink: 0;
+}
+.toggle-on  { background: var(--accent); justify-content: flex-end; }
+.toggle-off { background: var(--border-s); justify-content: flex-start; }
+.toggle-thumb { width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.18); }
 
-  /* ─── STATE PILL ─────────────────────────────────── */
-  .state-pill {
-    display: flex; align-items: center; gap: 10px;
-    width: 100%; padding: 11px 14px;
-    border-radius: var(--radius-s);
-    border: 1px solid var(--border);
-    background: var(--bg);
-    cursor: pointer; margin-bottom: 8px;
-    transition: border-color 0.15s;
-  }
-  .state-pill-selected {
-    border: 2px solid var(--accent);
-    background: var(--accent-bg);
-  }
-  .state-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.screen-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px; flex-shrink: 0;
+}
+.screen-title { font-size: 16px; font-weight: 700; }
+.back-btn {
+  display: flex; align-items: center; gap: 4px;
+  color: var(--text-2); background: none; border: none;
+  font-family: inherit; font-size: 13px; cursor: pointer;
+}
 
-  /* ─── HOME CARDS ─────────────────────────────────── */
-  .circle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .member-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 12px;
-    display: flex; flex-direction: column; gap: 8px;
-    background: var(--bg);
-    cursor: pointer;
-    transition: box-shadow 0.15s;
-    position: relative;
-  }
-  .member-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-  .member-card .avatar-lg {
-    width: 44px; height: 44px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 600;
-  }
-  .member-name { font-size: 13px; font-weight: 500; }
-  .member-state { font-size: 11px; color: var(--text-2); margin-top: 2px; }
-  .msg-pill {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--accent-bg); color: var(--accent);
-    font-size: 11px; font-weight: 500;
-    padding: 2px 8px; border-radius: 999px;
-    width: fit-content; margin-top: 4px;
-  }
+.dot-step { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.steps { display: flex; gap: 5px; margin-bottom: 20px; flex-shrink: 0; }
 
-  /* ─── MY STATE CARD ──────────────────────────────── */
-  .my-state-card {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px; border: 1px solid var(--border-s);
-    border-radius: var(--radius);
-    background: var(--bg);
-    margin-bottom: 16px;
-    cursor: pointer;
-  }
+.state-pill {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 10px 13px;
+  border-radius: var(--r-s); border: 1.5px solid var(--border);
+  background: var(--bg); cursor: pointer; margin-bottom: 7px;
+  transition: border-color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+.state-pill-sel { border: 2px solid var(--accent); background: var(--accent-l); }
+.state-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-  /* ─── INVITE SEARCH RESULT ───────────────────────── */
-  .search-result {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 0; border-bottom: 1px solid var(--border);
-  }
-  .check-circle {
-    width: 22px; height: 22px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+.sec-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); margin: 12px 0 6px; flex-shrink: 0; }
 
-  /* ─── CHAT BUBBLES ───────────────────────────────── */
-  .bubble {
-    max-width: 80%; padding: 9px 13px;
-    border-radius: 16px; font-size: 13px; line-height: 1.45;
-  }
-  .bubble-in  { background: var(--bg); align-self: flex-start; }
-  .bubble-out { background: var(--accent-bg); color: var(--text); align-self: flex-end; }
-  .chat-area  { flex: 1; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
-  .system-msg {
-    text-align: center; font-size: 11px; color: var(--text-3);
-    padding: 4px 0;
-  }
-  .quick-chip {
-    padding: 6px 12px; border-radius: 999px;
-    border: 1px solid var(--border); font-size: 12px;
-    background: var(--surface); cursor: pointer;
-    white-space: nowrap; color: var(--text-2);
-  }
+/* ── MSG PILL ─────────────────────────────────── */
+.msg-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--accent-l); color: var(--accent);
+  font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px;
+}
 
-  /* ─── PREMIUM PLAN CARDS ─────────────────────────── */
-  .plan-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 14px;
-    margin-bottom: 10px;
-  }
-  .plan-card-active { border: 2px solid var(--pro); background: var(--pro-bg); }
+/* ── SCREEN BADGE ─────────────────────────────── */
+.badge {
+  display: inline-block;
+  background: var(--accent); color: #fff;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 999px;
+}
 
-  /* ─── HEADER BAR ─────────────────────────────────── */
-  .screen-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 18px;
-  }
-  .screen-title { font-size: 16px; font-weight: 600; }
-  .back-btn {
-    display: flex; align-items: center; gap: 6px;
-    color: var(--text-2); cursor: pointer;
-    font-size: 13px; background: none; border: none;
-    font-family: inherit;
-  }
-  .icon { font-size: 18px; color: var(--text-2); cursor: pointer; }
+/* ── OTP INPUT ────────────────────────────────── */
+.otp-wrap {
+  display: flex; gap: 8px; justify-content: center; margin: 24px 0;
+  flex-shrink: 0;
+}
+.otp-box {
+  width: 42px; height: 50px;
+  border: 1.5px solid var(--border-s);
+  border-radius: var(--r-s);
+  font-size: 22px; font-weight: 700;
+  text-align: center; font-family: inherit; color: var(--text);
+  background: var(--bg); outline: none;
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-appearance: none;
+  caret-color: var(--accent);
+}
+.otp-box:focus { border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(59,109,17,0.12); }
+.otp-box.filled { border-color: var(--accent); background: var(--accent-l); }
 
-  /* ─── ONBOARDING ─────────────────────────────────── */
-  .ob-title { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
-  .ob-sub   { font-size: 13px; color: var(--text-2); margin-bottom: 24px; }
+/* ── OTP TIMER ────────────────────────────────── */
+.otp-timer-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 6px; flex-shrink: 0;
+}
 
-  /* ─── FEATURE LIST (premium) ─────────────────────── */
-  .feat-row { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; }
-  .feat-icon { color: var(--green); font-size: 15px; margin-top: 1px; flex-shrink: 0; }
-  .feat-text { font-size: 13px; }
-  .feat-sub  { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+/* ── HOME GRID ────────────────────────────────── */
+.circle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; flex-shrink: 0; }
+.member-card {
+  border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 11px; display: flex; flex-direction: column; gap: 7px;
+  background: var(--bg); cursor: pointer;
+  transition: box-shadow 0.15s;
+  position: relative;
+}
+.member-card:active { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.av44 { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
 
-  /* ─── SUMMARY SECTION ───────────────────────────── */
-  .summary-wrap {
-    background: var(--surface);
-    border-radius: 20px;
-    padding: 40px 48px;
-    border: 1px solid var(--border);
-    margin-top: 20px;
-  }
-  .summary-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-  .summary-logo .ring {
-    width: 40px; height: 40px; border-radius: 50%;
-    border: 2.5px solid var(--accent);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .summary-logo .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); }
-  .summary-logo span { font-size: 20px; font-weight: 600; }
-  .summary-headline { font-size: 28px; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.2; }
-  .summary-sub { font-size: 15px; color: var(--text-2); margin-bottom: 40px; max-width: 680px; line-height: 1.6; }
-  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .summary-card {
-    background: var(--bg);
-    border-radius: 14px; padding: 22px;
-    border: 1px solid var(--border);
-  }
-  .summary-card h3 {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--text-3); margin-bottom: 10px;
-  }
-  .summary-card p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
-  .summary-card strong { color: var(--text); }
-  .usp-pill {
-    display: inline-block;
-    background: var(--accent-bg); color: var(--accent);
-    font-size: 13px; font-weight: 500;
-    padding: 5px 14px; border-radius: 999px;
-    margin: 4px 4px 0 0;
-  }
-  .summary-divider { height: 1px; background: var(--border); margin: 32px 0; }
+/* ── CHAT LAYOUT ──────────────────────────────── */
+.chat-header {
+  display: flex; align-items: center; gap: 10px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.chat-messages {
+  flex: 1; overflow-y: auto; display: flex; flex-direction: column;
+  gap: 8px; padding: 12px 0;
+}
+.chat-messages::-webkit-scrollbar { width: 3px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.sys-msg { text-align: center; font-size: 10px; color: var(--text-3); padding: 2px 0; }
+.bubble {
+  max-width: 80%; padding: 8px 12px;
+  border-radius: 16px; font-size: 13px; line-height: 1.45;
+  word-break: break-word;
+}
+.b-in  { background: var(--bg); align-self: flex-start; border-bottom-left-radius: 4px; }
+.b-out { background: var(--accent-l); align-self: flex-end; border-bottom-right-radius: 4px; }
+.b-time { font-size: 10px; color: var(--text-3); padding: 0 4px; align-self: flex-end; }
+.chat-chips {
+  display: flex; gap: 6px; overflow-x: auto; padding: 8px 0 6px;
+  flex-shrink: 0;
+}
+.chat-chips::-webkit-scrollbar { display: none; }
+.chip {
+  padding: 6px 12px; border-radius: 999px;
+  border: 1.5px solid var(--border); font-size: 12px;
+  background: var(--surface); cursor: pointer; white-space: nowrap;
+  color: var(--text-2); flex-shrink: 0; font-family: inherit;
+}
+.chat-input-row {
+  display: flex; gap: 8px; align-items: center; flex-shrink: 0;
+  padding-top: 6px; border-top: 1px solid var(--border);
+}
+.chat-input {
+  flex: 1; padding: 9px 12px;
+  border: 1.5px solid var(--border-s); border-radius: 20px;
+  font-size: 13px; font-family: inherit; color: var(--text);
+  background: var(--bg); outline: none;
+  transition: border-color 0.15s;
+}
+.chat-input:focus { border-color: var(--accent); background: #fff; }
+.chat-input::placeholder { color: var(--text-3); }
+.send-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent); border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+}
 
-  /* ─── FLOW ARROWS ───────────────────────────────── */
-  .flow-label {
-    font-size: 11px; color: var(--text-3); text-align: center;
-    margin-bottom: 6px;
-  }
-  .arrow-connector {
-    display: flex; align-items: center; justify-content: center;
-    padding-top: 32px;
-    color: var(--text-3); font-size: 22px;
-    flex-shrink: 0;
-  }
+/* ── PREMIUM ──────────────────────────────────── */
+.plan-feat { display: flex; align-items: flex-start; gap: 10px; padding: 5px 0; }
+.plan-check { color: var(--accent-m); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
 
-  /* ─── CALLOUT BADGE ─────────────────────────────── */
-  .screen-badge {
-    display: inline-block;
-    background: var(--accent); color: #fff;
-    font-size: 10px; font-weight: 600;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 999px;
-    margin-bottom: 8px;
-  }
+/* ── STATE LEGEND ─────────────────────────────── */
+.legend-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 56px; }
+.legend-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px; border-radius: 12px; flex: 1; min-width: 150px;
+}
 
-  @media (max-width: 700px) {
-    .summary-wrap { padding: 24px 20px; }
-    .summary-headline { font-size: 22px; }
-    .screen-row { justify-content: center; }
-  }
+/* ── SUMMARY ──────────────────────────────────── */
+.summary {
+  background: var(--surface);
+  border-radius: 24px; padding: 44px 48px;
+  border: 1px solid var(--border);
+}
+.summary-head { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.2; }
+.summary-sub  { font-size: 15px; color: var(--text-2); margin-bottom: 40px; max-width: 680px; line-height: 1.65; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.s-card { background: var(--bg); border-radius: 14px; padding: 22px; border: 1px solid var(--border); }
+.s-card h3 {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3); margin-bottom: 10px;
+}
+.s-card p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.s-card strong { color: var(--text); }
+.usp-pill {
+  display: inline-block; background: var(--accent-l); color: var(--accent);
+  font-size: 12px; font-weight: 500; padding: 4px 12px;
+  border-radius: 999px; margin: 3px 3px 0 0;
+}
+.summary-divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+/* ── MY STATE CARD ────────────────────────────── */
+.my-state {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 12px; border: 1.5px solid var(--border-s);
+  border-radius: 12px; background: var(--bg);
+  margin-bottom: 14px; cursor: pointer; flex-shrink: 0;
+}
+
+/* ── SEARCH RESULT ────────────────────────────── */
+.s-result { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.check-c {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .summary { padding: 24px 20px; }
+  .summary-head { font-size: 22px; }
+  .screen-row { justify-content: center; }
+}
 </style>
 </head>
 <body>
-<div class="page-wrap">
+<div class="page">
 
-  <!-- SITE HEADER -->
+  <!-- HEADER -->
   <div class="site-header">
-    <div class="logo-ring"><div class="logo-dot"></div></div>
+    <div class="logo"><div class="logo-dot"></div></div>
     <h1>Capacity</h1>
-    <p>Complete app prototype — all screens, all flows</p>
+    <p>Complete prototype · 16 screens · all flows</p>
   </div>
 
 
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SECTION 1: AUTH FLOW                           -->
-  <!-- ══════════════════════════════════════════════ -->
-  <div class="section-label">① Auth flow — Sign In · Sign Up · Forgot Password · Verification</div>
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- FLOW 1 · AUTH                                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div class="section-label">① Auth — Sign In · Sign Up · OTP Verification · Forgot Password · Reset OTP · New Password</div>
   <div class="screen-row">
 
-    <!-- SIGN IN -->
-    <div>
-      <div class="screen-badge">Screen 1</div>
-      <div class="flow-label">Returning users land here</div>
+    <!-- S1: SIGN IN -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 1</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
-          <div style="margin-bottom:32px;margin-top:8px;">
-            <div style="width:36px;height:36px;border-radius:50%;border:2.5px solid var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;margin-bottom:28px;margin-top:10px;">
+            <div style="width:36px;height:36px;border-radius:50%;border:2.5px solid var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:12px;">
               <div style="width:13px;height:13px;border-radius:50%;background:var(--accent);"></div>
             </div>
-            <div style="font-size:20px;font-weight:600;margin-bottom:4px;">Welcome back</div>
-            <div style="font-size:13px;color:var(--text-2);">Sign in to your circles.</div>
+            <div style="font-size:20px;font-weight:700;">Welcome back</div>
+            <div style="font-size:12px;color:var(--text-2);margin-top:3px;">Sign in to your circles</div>
           </div>
-
           <div class="field-wrap">
             <label class="field-label">Email address</label>
-            <input class="input" type="email" placeholder="name@email.com" value="sara@example.com" />
+            <input class="input" type="email" value="sara@example.com" />
           </div>
           <div class="field-wrap">
             <label class="field-label">Password</label>
             <input class="input" type="password" value="••••••••" />
           </div>
-          <div style="text-align:right;margin-bottom:22px;margin-top:-6px;">
-            <span class="link-text" style="font-size:12px;">Forgot password?</span>
+          <div style="text-align:right;margin-bottom:20px;margin-top:-4px;">
+            <span class="link" style="font-size:12px;">Forgot password?</span>
           </div>
-
           <button class="btn btn-primary" style="margin-bottom:12px;">Sign in</button>
-
           <p style="text-align:center;font-size:13px;color:var(--text-2);margin-top:auto;">
-            New here? <span class="link-text">Create account</span>
+            New here? <span class="link">Create account</span>
           </p>
         </div>
       </div>
+      <div class="phone-sub">Returning users · email + password · forgot password link</div>
     </div>
 
-    <!-- SIGN UP -->
-    <div>
-      <div class="screen-badge">Screen 2</div>
-      <div class="flow-label">First-time users — all fields required</div>
+    <!-- S2: SIGN UP -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 2</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
-          <div style="margin-bottom:24px;margin-top:8px;">
-            <div style="font-size:20px;font-weight:600;margin-bottom:4px;">Create your account</div>
-            <div style="font-size:13px;color:var(--text-2);">Takes about a minute.</div>
-          </div>
-
+          <div style="font-size:20px;font-weight:700;margin-bottom:3px;margin-top:6px;">Create account</div>
+          <div style="font-size:12px;color:var(--text-2);margin-bottom:18px;">Takes about a minute.</div>
           <div class="field-wrap">
             <label class="field-label">Your name</label>
-            <input class="input" type="text" placeholder="Full name" value="Sara K." />
+            <input class="input" type="text" value="Sara K." />
           </div>
           <div class="field-wrap">
-            <label class="field-label">Username <span style="color:var(--text-3);font-weight:400;">— how people find you</span></label>
+            <label class="field-label">Username <span style="font-weight:400;color:var(--text-3);">— how people find you</span></label>
             <div style="position:relative;">
-              <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:14px;">@</span>
-              <input class="input" type="text" style="padding-left:22px;" placeholder="sara.k" value="sara.k" />
+              <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:13px;">@</span>
+              <input class="input" type="text" style="padding-left:24px;" value="sara.k" />
             </div>
-            <div style="font-size:11px;color:var(--green);margin-top:4px;">@sara.k is available ✓</div>
+            <div class="field-hint" style="color:var(--accent-m);">✓ @sara.k is available</div>
           </div>
           <div class="field-wrap">
-            <label class="field-label">Email</label>
-            <input class="input" type="email" placeholder="name@email.com" value="sara@example.com" />
+            <label class="field-label">Email address</label>
+            <input class="input" type="email" value="sara@example.com" />
           </div>
           <div class="field-wrap" style="margin-bottom:20px;">
-            <label class="field-label">Password <span style="color:var(--text-3);font-weight:400;">at least 8 characters</span></label>
-            <input class="input" type="password" value="••••••••" />
+            <label class="field-label">Password <span style="font-weight:400;color:var(--text-3);">min 8 chars</span></label>
+            <input class="input" type="password" value="••••••••••" />
           </div>
-
-          <button class="btn btn-primary" style="margin-bottom:12px;">Create account</button>
-
-          <p style="text-align:center;font-size:13px;color:var(--text-2);margin-top:auto;">
-            Have an account? <span class="link-text">Sign in</span>
+          <button class="btn btn-primary" style="margin-bottom:10px;">Create account</button>
+          <p style="text-align:center;font-size:12px;color:var(--text-2);margin-top:auto;">
+            Have an account? <span class="link">Sign in</span>
           </p>
         </div>
       </div>
+      <div class="phone-sub">Name · @username with availability check · email · password</div>
     </div>
 
-    <!-- VERIFY EMAIL -->
-    <div>
-      <div class="screen-badge">Screen 3</div>
-      <div class="flow-label">After Sign Up — check inbox</div>
+    <!-- S3: OTP VERIFY (Account creation) -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 3</span>
       <div class="phone">
         <div class="phone-notch"></div>
-        <div class="screen" style="align-items:center;justify-content:center;text-align:center;">
-          <div style="width:56px;height:56px;border-radius:50%;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <div class="screen" style="align-items:center;text-align:center;">
+          <div style="width:52px;height:52px;border-radius:50%;background:var(--accent-l);display:flex;align-items:center;justify-content:center;margin:10px auto 14px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </div>
-          <div style="font-size:18px;font-weight:600;margin-bottom:8px;">Check your email</div>
-          <div style="font-size:13px;color:var(--text-2);margin-bottom:32px;max-width:220px;line-height:1.6;">
-            We sent a link to <strong>sara@example.com</strong>. Tap it to verify your account.
+          <div style="font-size:19px;font-weight:700;margin-bottom:6px;">Verify your email</div>
+          <div style="font-size:12px;color:var(--text-2);max-width:220px;line-height:1.55;margin-bottom:4px;">
+            We sent a 6-digit code to<br><strong style="color:var(--text);">sara@example.com</strong>
           </div>
-          <button class="btn btn-primary" style="max-width:220px;margin-bottom:12px;">Open email app</button>
-          <div style="font-size:12px;color:var(--text-3);margin-top:auto;">
-            Didn't get it? <span class="link-text" style="font-size:12px;">Resend</span>
+
+          <div class="otp-wrap" id="otp-signup">
+            <input class="otp-box filled" type="text" inputmode="numeric" maxlength="1" value="4" />
+            <input class="otp-box filled" type="text" inputmode="numeric" maxlength="1" value="8" />
+            <input class="otp-box filled" type="text" inputmode="numeric" maxlength="1" value="2" />
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" placeholder="·" />
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" placeholder="·" />
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" placeholder="·" />
+          </div>
+
+          <div class="otp-timer-row">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span style="font-size:12px;color:var(--text-3);">Resend code in <span style="font-weight:600;color:var(--text-2);" id="t1">0:42</span></span>
+          </div>
+
+          <button class="btn btn-primary" style="margin-top:24px;width:100%;">Verify &amp; continue</button>
+          <div style="margin-top:auto;padding-top:16px;">
+            <span class="link" style="font-size:12px;">← Wrong email? Go back</span>
           </div>
         </div>
       </div>
+      <div class="phone-sub">After sign up · 6-digit OTP · resend timer · verify to proceed</div>
     </div>
 
-    <!-- FORGOT PASSWORD -->
-    <div>
-      <div class="screen-badge">Screen 4</div>
-      <div class="flow-label">From Sign In → "Forgot password?"</div>
+    <!-- S4: FORGOT PASSWORD -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 4</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
-          <div style="margin-bottom:28px;margin-top:8px;">
-            <div style="font-size:20px;font-weight:600;margin-bottom:4px;">Reset password</div>
-            <div style="font-size:13px;color:var(--text-2);">We'll email you a reset link.</div>
+          <div style="margin-bottom:28px;margin-top:10px;">
+            <div style="font-size:20px;font-weight:700;margin-bottom:3px;">Reset password</div>
+            <div style="font-size:12px;color:var(--text-2);">Enter the email on your account. We'll send a code.</div>
           </div>
-
-          <div class="field-wrap" style="margin-bottom:22px;">
+          <div class="field-wrap" style="margin-bottom:24px;">
             <label class="field-label">Email address</label>
-            <input class="input" type="email" placeholder="name@email.com" value="sara@example.com" />
+            <input class="input" type="email" value="sara@example.com" />
           </div>
-
-          <button class="btn btn-primary" style="margin-bottom:12px;">Send reset link</button>
-
-          <p style="text-align:center;font-size:13px;margin-top:auto;">
-            <span class="link-text">← Back to sign in</span>
+          <button class="btn btn-primary" style="margin-bottom:12px;">Send reset code</button>
+          <p style="text-align:center;font-size:12px;margin-top:auto;">
+            <span class="link">← Back to sign in</span>
           </p>
         </div>
       </div>
+      <div class="phone-sub">From Sign In "Forgot password?" · email entry · sends OTP</div>
     </div>
 
-    <!-- RESET SENT -->
-    <div>
-      <div class="screen-badge">Screen 5</div>
-      <div class="flow-label">After "Send reset link" — confirmation</div>
+    <!-- S5: OTP VERIFY (Password reset) -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 5</span>
       <div class="phone">
         <div class="phone-notch"></div>
-        <div class="screen" style="align-items:center;justify-content:center;text-align:center;">
-          <div style="width:56px;height:56px;border-radius:50%;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div class="screen" style="align-items:center;text-align:center;">
+          <div style="width:52px;height:52px;border-radius:50%;background:var(--pro-bg);display:flex;align-items:center;justify-content:center;margin:10px auto 14px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--pro)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
-          <div style="font-size:18px;font-weight:600;margin-bottom:8px;">Link sent</div>
-          <div style="font-size:13px;color:var(--text-2);margin-bottom:32px;max-width:220px;line-height:1.6;">
-            Check <strong>sara@example.com</strong> for a reset link. It expires in 30 minutes.
+          <div style="font-size:19px;font-weight:700;margin-bottom:6px;">Enter reset code</div>
+          <div style="font-size:12px;color:var(--text-2);max-width:220px;line-height:1.55;margin-bottom:4px;">
+            6-digit code sent to<br><strong style="color:var(--text);">sara@example.com</strong>
           </div>
-          <button class="btn btn-primary" style="max-width:220px;margin-bottom:12px;">Open email app</button>
-          <div style="font-size:12px;color:var(--text-3);margin-top:auto;">
-            Wrong email? <span class="link-text" style="font-size:12px;">Try again</span>
+
+          <div class="otp-wrap" id="otp-reset">
+            <input class="otp-box filled" type="text" inputmode="numeric" maxlength="1" value="7" />
+            <input class="otp-box filled" type="text" inputmode="numeric" maxlength="1" value="3" />
+            <input class="otp-box filled" type="text" inputmode="numeric" maxlength="1" value="1" />
+            <input class="otp-box filled" type="text" inputmode="numeric" maxlength="1" value="9" />
+            <input class="otp-box filled" type="text" inputmode="numeric" maxlength="1" value="0" />
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" placeholder="·" style="border-color:var(--accent);" />
+          </div>
+
+          <div class="otp-timer-row">
+            <span style="font-size:12px;color:var(--text-3);">Didn't get it? <span class="link" style="font-size:12px;">Resend code</span></span>
+          </div>
+          <div style="font-size:10px;color:var(--text-3);margin-top:4px;">Code expires in 10 minutes</div>
+
+          <button class="btn btn-primary" style="margin-top:22px;width:100%;">Verify code</button>
+          <div style="margin-top:auto;padding-top:16px;">
+            <span class="link" style="font-size:12px;">← Back</span>
           </div>
         </div>
       </div>
+      <div class="phone-sub">Password reset OTP · 5 of 6 filled · resend available · 10-min expiry</div>
+    </div>
+
+    <!-- S6: NEW PASSWORD -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 6</span>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="screen">
+          <div style="width:52px;height:52px;border-radius:50%;background:var(--accent-l);display:flex;align-items:center;justify-content:center;margin:10px 0 14px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div style="font-size:20px;font-weight:700;margin-bottom:3px;">New password</div>
+          <div style="font-size:12px;color:var(--text-2);margin-bottom:22px;">Code verified. Set your new password.</div>
+
+          <div class="field-wrap">
+            <label class="field-label">New password</label>
+            <input class="input" type="password" placeholder="At least 8 characters" value="••••••••••" />
+            <div class="field-hint" style="color:var(--accent-m);">✓ Strong password</div>
+          </div>
+          <div class="field-wrap" style="margin-bottom:24px;">
+            <label class="field-label">Confirm new password</label>
+            <input class="input" type="password" value="••••••••••" />
+          </div>
+
+          <button class="btn btn-primary" style="margin-bottom:12px;">Save new password</button>
+          <p style="font-size:11px;color:var(--text-3);text-align:center;margin-top:auto;line-height:1.5;">
+            You'll be signed out of all other devices after changing your password.
+          </p>
+        </div>
+      </div>
+      <div class="phone-sub">After reset OTP · new password + confirm · strength indicator</div>
     </div>
 
   </div><!-- /screen-row -->
 
 
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SECTION 2: ONBOARDING FLOW                     -->
-  <!-- ══════════════════════════════════════════════ -->
-  <div class="section-label">② Onboarding — 3 steps before first home screen</div>
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- FLOW 2 · ONBOARDING                                                -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div class="section-label">② Onboarding — 3 steps before first home screen (mandatory invite gate)</div>
   <div class="screen-row">
 
-    <!-- STEP 1: Name your circle -->
-    <div>
-      <div class="screen-badge">Screen 6</div>
-      <div class="flow-label">Onboarding step 1 of 3</div>
+    <!-- S7: NAME YOUR CIRCLE -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 7</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
@@ -578,31 +592,28 @@
             <span class="dot-step" style="background:var(--border-s);"></span>
             <span class="dot-step" style="background:var(--border-s);"></span>
           </div>
-          <div class="ob-title">Name your first circle</div>
-          <div class="ob-sub">Circles are private groups. You can create more later.</div>
-
-          <div class="field-wrap" style="margin-bottom:14px;">
+          <div style="font-size:19px;font-weight:700;margin-bottom:4px;">Name your first circle</div>
+          <div style="font-size:12px;color:var(--text-2);margin-bottom:20px;">Circles are private groups. You can create more later.</div>
+          <div class="field-wrap">
             <label class="field-label">Circle name</label>
             <input class="input" type="text" value="Close circle" />
           </div>
-
-          <div style="font-size:11px;color:var(--text-3);margin-bottom:10px;">Quick picks</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:auto;">
-            <button style="padding:6px 14px;border-radius:999px;border:1px solid var(--border);font-size:13px;background:var(--surface);cursor:pointer;">Family</button>
-            <button style="padding:6px 14px;border-radius:999px;border:2px solid var(--accent);color:var(--accent);font-size:13px;font-weight:500;background:var(--accent-bg);cursor:pointer;">Close circle</button>
-            <button style="padding:6px 14px;border-radius:999px;border:1px solid var(--border);font-size:13px;background:var(--surface);cursor:pointer;">Partner</button>
-            <button style="padding:6px 14px;border-radius:999px;border:1px solid var(--border);font-size:13px;background:var(--surface);cursor:pointer;">Work</button>
+          <div class="sec-lbl" style="margin-top:4px;">Quick picks</div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:auto;">
+            <button style="padding:6px 14px;border-radius:999px;border:1.5px solid var(--border);font-size:12px;background:var(--surface);cursor:pointer;font-family:inherit;">Family</button>
+            <button style="padding:6px 14px;border-radius:999px;border:2px solid var(--accent);color:var(--accent);font-size:12px;font-weight:600;background:var(--accent-l);cursor:pointer;font-family:inherit;">Close circle</button>
+            <button style="padding:6px 14px;border-radius:999px;border:1.5px solid var(--border);font-size:12px;background:var(--surface);cursor:pointer;font-family:inherit;">Partner</button>
+            <button style="padding:6px 14px;border-radius:999px;border:1.5px solid var(--border);font-size:12px;background:var(--surface);cursor:pointer;font-family:inherit;">Work</button>
           </div>
-
-          <button class="btn btn-primary" style="margin-top:auto;">Continue</button>
+          <button class="btn btn-primary" style="margin-top:auto;">Continue →</button>
         </div>
       </div>
+      <div class="phone-sub">Step 1 of 3 · name the circle · preset suggestions</div>
     </div>
 
-    <!-- STEP 2: Add people by username -->
-    <div>
-      <div class="screen-badge">Screen 7</div>
-      <div class="flow-label">Onboarding step 2 of 3 — invite gate (viral loop)</div>
+    <!-- S8: ADD BY USERNAME -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 8</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
@@ -611,55 +622,46 @@
             <span class="dot-step" style="background:var(--accent);"></span>
             <span class="dot-step" style="background:var(--border-s);"></span>
           </div>
-          <div class="ob-title">Add at least one person</div>
-          <div class="ob-sub">Capacity only works once someone else is in your circle.</div>
+          <div style="font-size:19px;font-weight:700;margin-bottom:4px;">Add at least one person</div>
+          <div style="font-size:12px;color:var(--text-2);margin-bottom:14px;">Capacity only works once someone else is in your circle.</div>
 
-          <button class="btn" style="margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--bg);">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <button class="btn" style="margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--bg);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             Share invite link
           </button>
 
-          <div style="font-size:11px;color:var(--text-3);margin-bottom:8px;">or search by username</div>
-          <input class="input" type="text" placeholder="@username" style="margin-bottom:12px;" value="@sara" />
+          <div style="font-size:11px;color:var(--text-3);margin-bottom:7px;">or search by @username — no phone number needed</div>
+          <input class="input" type="text" placeholder="@username" value="@sara" style="margin-bottom:10px;" />
 
-          <div class="search-result">
-            <div class="avatar" style="background:var(--accent-bg);color:var(--accent);">SK</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">Sara K.</div>
-              <div style="font-size:11px;color:var(--text-3);">@sara.k</div>
-            </div>
-            <div class="check-circle" style="background:var(--accent);">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="s-result">
+            <div class="avatar" style="width:34px;height:34px;background:var(--accent-l);color:var(--accent);font-size:12px;">SK</div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Sara K.</div><div style="font-size:11px;color:var(--text-3);">@sara.k · 3 circles</div></div>
+            <div class="check-c" style="background:var(--accent);">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
           </div>
-          <div class="search-result">
-            <div class="avatar" style="background:var(--accent-bg);color:var(--accent);">JP</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">Jamie P.</div>
-              <div style="font-size:11px;color:var(--text-3);">@jamie.p</div>
-            </div>
-            <div class="check-circle" style="background:var(--accent);">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="s-result">
+            <div class="avatar" style="width:34px;height:34px;background:var(--accent-l);color:var(--accent);font-size:12px;">JP</div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Jamie P.</div><div style="font-size:11px;color:var(--text-3);">@jamie.p · 2 circles</div></div>
+            <div class="check-c" style="background:var(--accent);">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
           </div>
-          <div class="search-result" style="border:none;">
-            <div class="avatar" style="background:var(--accent-bg);color:var(--accent);">RA</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">Ravi A.</div>
-              <div style="font-size:11px;color:var(--text-3);">@ravi.a</div>
-            </div>
-            <div class="check-circle" style="border:1.5px solid var(--border-s);"></div>
+          <div class="s-result" style="border:none;">
+            <div class="avatar" style="width:34px;height:34px;background:var(--accent-l);color:var(--accent);font-size:12px;">RA</div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Ravi A.</div><div style="font-size:11px;color:var(--text-3);">@ravi.a · 1 circle</div></div>
+            <div class="check-c" style="border:1.5px solid var(--border-s);"></div>
           </div>
 
-          <button class="btn btn-primary" style="margin-top:auto;">Continue · 2 selected</button>
+          <button class="btn btn-primary" style="margin-top:auto;">Continue · 2 selected →</button>
         </div>
       </div>
+      <div class="phone-sub">Step 2 of 3 · username search only · no phone number · invite link · VIRAL GATE</div>
     </div>
 
-    <!-- STEP 3: Set first state -->
-    <div>
-      <div class="screen-badge">Screen 8</div>
-      <div class="flow-label">Onboarding step 3 of 3 — the whole app in one action</div>
+    <!-- S9: SET FIRST STATE -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 9</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
@@ -668,87 +670,89 @@
             <span class="dot-step" style="background:var(--border-s);"></span>
             <span class="dot-step" style="background:var(--accent);"></span>
           </div>
-          <div class="ob-title">How are you, right now?</div>
-          <div class="ob-sub">This is the whole app. Pick one, you're done.</div>
+          <div style="font-size:19px;font-weight:700;margin-bottom:4px;">How are you right now?</div>
+          <div style="font-size:12px;color:var(--text-2);margin-bottom:20px;">This is the entire app. Pick one. You're done.</div>
 
-          <div class="state-pill"><span class="state-dot" style="background:var(--green);"></span><span style="font-size:14px;flex:1;">Good</span></div>
-          <div class="state-pill state-pill-selected">
+          <div class="state-pill"><span class="state-dot" style="background:var(--accent-m);"></span><span style="font-size:13px;flex:1;">Good</span><span style="font-size:11px;color:var(--text-3);">Full capacity</span></div>
+          <div class="state-pill state-pill-sel">
             <span class="state-dot" style="background:var(--amber);"></span>
-            <span style="font-size:14px;font-weight:500;flex:1;">Okay</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:13px;font-weight:600;flex:1;">Okay</span>
+            <span style="font-size:11px;color:var(--text-2);">Keep it light</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="state-pill"><span class="state-dot" style="background:var(--coral);"></span><span style="font-size:14px;flex:1;">Stretched</span></div>
-          <div class="state-pill"><span class="state-dot" style="background:var(--red);"></span><span style="font-size:14px;flex:1;">Need space</span></div>
-          <div class="state-pill"><span class="state-dot" style="background:var(--text-3);"></span><span style="font-size:14px;flex:1;">Off the grid</span></div>
+          <div class="state-pill"><span class="state-dot" style="background:var(--coral);"></span><span style="font-size:13px;flex:1;">Stretched</span><span style="font-size:11px;color:var(--text-3);">Be brief</span></div>
+          <div class="state-pill"><span class="state-dot" style="background:var(--red);"></span><span style="font-size:13px;flex:1;">Need space</span><span style="font-size:11px;color:var(--text-3);">Don't initiate</span></div>
+          <div class="state-pill"><span class="state-dot" style="background:var(--text-3);"></span><span style="font-size:13px;flex:1;">Off the grid</span><span style="font-size:11px;color:var(--text-3);">Not sharing</span></div>
 
           <button class="btn btn-primary" style="margin-top:auto;">Finish setup</button>
         </div>
       </div>
+      <div class="phone-sub">Step 3 of 3 · one tap completes setup · descriptions help first-timers</div>
     </div>
 
   </div><!-- /screen-row -->
 
 
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SECTION 3: CORE APP SCREENS                    -->
-  <!-- ══════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- FLOW 3 · CORE APP                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
   <div class="section-label">③ Core app — Home · State Picker · Circle Page · Chat</div>
   <div class="screen-row">
 
-    <!-- HOME -->
-    <div>
-      <div class="screen-badge">Screen 9</div>
-      <div class="flow-label">Home — default screen after login</div>
+    <!-- S10: HOME -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 10</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
-          <div class="screen-header">
+          <div class="screen-hdr">
             <span class="screen-title">Close circle</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
           </div>
 
-          <div class="my-state-card">
-            <div class="avatar" style="background:var(--green-bg);color:var(--green);border:2px solid var(--green);">Me</div>
+          <div class="my-state">
+            <div class="avatar" style="width:40px;height:40px;background:var(--accent-l);color:var(--accent);border:2px solid var(--accent);font-size:12px;">Me</div>
             <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">Your state: good</div>
-              <div style="font-size:11px;color:var(--text-3);">Tap to update · set 40 min ago</div>
+              <div style="font-size:13px;font-weight:600;">Your state: good</div>
+              <div style="font-size:11px;color:var(--text-3);">Tap to update · 40 min ago</div>
             </div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
 
-          <div style="font-size:12px;color:var(--text-3);margin-bottom:10px;">Your circle · sorted by recent</div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:9px;">Your circle · sorted by recent</div>
 
           <div class="circle-grid">
             <div class="member-card">
-              <div class="avatar-lg" style="background:var(--red-bg);border:2px solid var(--red);color:var(--red-bd);">RA</div>
+              <div class="av44" style="background:var(--red-bg);border:2px solid var(--red-bd);color:var(--red-bd);">RA</div>
               <div>
-                <div class="member-name">Ravi</div>
-                <div class="member-state">Need space · 1h ago</div>
+                <div style="font-size:13px;font-weight:600;">Ravi</div>
+                <div style="font-size:11px;color:var(--text-2);">Need space</div>
+                <div style="font-size:10px;color:var(--text-3);">1h ago</div>
               </div>
             </div>
             <div class="member-card">
-              <div class="avatar-lg" style="background:var(--green-bg);border:2px solid var(--green-bd);color:var(--green-bd);">SK</div>
+              <div class="av44" style="background:var(--accent-l);border:2px solid var(--green-bd);color:var(--green-bd);">SK</div>
               <div>
-                <div class="member-name">Sara</div>
-                <div class="member-state">Good · 2h ago</div>
-                <div class="msg-pill">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <div style="font-size:13px;font-weight:600;">Sara</div>
+                <div style="font-size:11px;color:var(--text-2);">Good · 2h ago</div>
+                <div class="msg-pill" style="margin-top:4px;">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                   2 new
                 </div>
               </div>
             </div>
             <div class="member-card">
-              <div class="avatar-lg" style="background:var(--amber-bg);border:2px solid var(--amber-bd);color:var(--amber-bd);">JP</div>
+              <div class="av44" style="background:var(--amber-bg);border:2px solid var(--amber-bd);color:var(--amber-bd);">JP</div>
               <div>
-                <div class="member-name">Jamie</div>
-                <div class="member-state">Okay · 4h ago</div>
+                <div style="font-size:13px;font-weight:600;">Jamie</div>
+                <div style="font-size:11px;color:var(--text-2);">Okay · 4h ago</div>
               </div>
             </div>
-            <div class="member-card" style="opacity:0.65;">
-              <div class="avatar-lg" style="border:2px solid var(--border-s);color:var(--text-3);">DV</div>
+            <div class="member-card" style="opacity:0.6;">
+              <div class="av44" style="border:2px solid var(--border-s);color:var(--text-3);">DV</div>
               <div>
-                <div class="member-name">Dev</div>
-                <div class="member-state">Quiet for 5 days</div>
+                <div style="font-size:13px;font-weight:600;">Dev</div>
+                <div style="font-size:11px;color:var(--text-3);">Quiet for 5 days</div>
               </div>
             </div>
           </div>
@@ -756,420 +760,400 @@
           <button class="btn" style="margin-top:auto;">+ Add circle</button>
         </div>
       </div>
+      <div class="phone-sub">Home default · your state card · circle grid sorted by recency · 2 new messages on Sara · Dev faded for silence</div>
     </div>
 
-    <!-- STATE PICKER -->
-    <div>
-      <div class="screen-badge">Screen 10</div>
-      <div class="flow-label">State picker — tap your card on Home</div>
+    <!-- S11: STATE PICKER -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 11</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
-          <div style="margin-bottom:20px;">
-            <div style="font-size:16px;font-weight:600;margin-bottom:4px;">Set your state</div>
-            <div style="font-size:13px;color:var(--text-2);">Visible to: Close circle</div>
+          <div style="margin-bottom:14px;flex-shrink:0;">
+            <div style="font-size:16px;font-weight:700;">Set your state</div>
+            <div style="font-size:12px;color:var(--text-2);margin-top:2px;">Visible to: Close circle</div>
           </div>
 
-          <div class="state-pill state-pill-selected">
-            <span class="state-dot" style="background:var(--green);"></span>
-            <span style="font-size:14px;font-weight:500;flex:1;">Good</span>
-            <span style="font-size:11px;color:var(--accent);">Current</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="state-pill state-pill-sel">
+            <span class="state-dot" style="background:var(--accent-m);"></span>
+            <span style="font-size:13px;font-weight:600;flex:1;">Good</span>
+            <span style="font-size:10px;color:var(--accent);font-weight:600;">CURRENT</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="state-pill">
-            <span class="state-dot" style="background:var(--amber);"></span>
-            <span style="font-size:14px;flex:1;">Okay</span>
-          </div>
-          <div class="state-pill">
-            <span class="state-dot" style="background:var(--coral);"></span>
-            <span style="font-size:14px;flex:1;">Stretched</span>
-          </div>
-          <div class="state-pill">
-            <span class="state-dot" style="background:var(--red);"></span>
-            <span style="font-size:14px;flex:1;">Need space</span>
-          </div>
-          <div class="state-pill" style="margin-bottom:20px;">
-            <span class="state-dot" style="background:var(--text-3);"></span>
-            <span style="font-size:14px;flex:1;">Off the grid</span>
-          </div>
+          <div class="state-pill"><span class="state-dot" style="background:var(--amber);"></span><span style="font-size:13px;flex:1;">Okay</span><span style="font-size:11px;color:var(--text-3);">Keep it light</span></div>
+          <div class="state-pill"><span class="state-dot" style="background:var(--coral);"></span><span style="font-size:13px;flex:1;">Stretched</span><span style="font-size:11px;color:var(--text-3);">Be brief</span></div>
+          <div class="state-pill"><span class="state-dot" style="background:var(--red);"></span><span style="font-size:13px;flex:1;">Need space</span><span style="font-size:11px;color:var(--text-3);">Don't initiate</span></div>
+          <div class="state-pill" style="margin-bottom:14px;"><span class="state-dot" style="background:var(--text-3);"></span><span style="font-size:13px;flex:1;">Off the grid</span><span style="font-size:11px;color:var(--text-3);">Not sharing</span></div>
 
-          <div style="font-size:12px;color:var(--text-3);margin-bottom:8px;">Add a word (optional)</div>
-          <input class="input" type="text" placeholder="long day, nothing urgent" style="margin-bottom:20px;" />
+          <div style="font-size:11px;color:var(--text-3);margin-bottom:6px;flex-shrink:0;">Add a word (optional)</div>
+          <input class="input" type="text" placeholder="long day, nothing urgent" style="margin-bottom:12px;" />
 
           <div class="divider"></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;margin-bottom:4px;">
-            <div>
-              <div style="font-size:13px;font-weight:500;">Auto-set from calendar</div>
-              <div style="font-size:11px;color:var(--text-3);">Sets "stretched" during back-to-back meetings</div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 0;flex-shrink:0;">
+            <div style="flex:1;">
+              <div style="font-size:12px;font-weight:500;">Auto-set from calendar</div>
+              <div style="font-size:10px;color:var(--text-3);">Sets "stretched" during back-to-back meetings</div>
             </div>
             <div class="toggle toggle-on"><div class="toggle-thumb"></div></div>
-          </div>
-          <div style="font-size:11px;color:var(--text-3);background:var(--bg);border-radius:var(--radius-s);padding:8px;margin-bottom:16px;">
-            💡 Premium feature — calendar sync enabled
           </div>
 
           <button class="btn btn-primary" style="margin-top:auto;">Update state</button>
         </div>
       </div>
+      <div class="phone-sub">Tap your card on Home · current state marked · optional note · calendar auto-set (Premium)</div>
     </div>
 
-    <!-- CIRCLE PAGE -->
-    <div>
-      <div class="screen-badge">Screen 11</div>
-      <div class="flow-label">Circle detail — from Settings → Close circle</div>
+    <!-- S12: CIRCLE PAGE -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 12</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
-          <div class="screen-header">
+          <div class="screen-hdr">
             <button class="back-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-              Back
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              Settings
             </button>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div class="screen-title" style="margin-bottom:14px;">Close circle</div>
+
+          <div class="row row-b">
+            <div class="avatar" style="width:36px;height:36px;background:var(--red-bg);border:2px solid var(--red-bd);color:var(--red-bd);font-size:12px;">RA</div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Ravi</div><div style="font-size:11px;color:var(--text-2);">Need space · 1h ago</div></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="row row-b">
+            <div class="avatar" style="width:36px;height:36px;background:var(--accent-l);border:2px solid var(--green-bd);color:var(--green-bd);font-size:12px;">SK</div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Sara</div><div style="font-size:11px;color:var(--text-2);">Good · 2h ago</div></div>
+            <div class="msg-pill" style="margin-right:6px;">2 new</div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="row row-b">
+            <div class="avatar" style="width:36px;height:36px;background:var(--amber-bg);border:2px solid var(--amber-bd);color:var(--amber-bd);font-size:12px;">JP</div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Jamie</div><div style="font-size:11px;color:var(--text-2);">Okay · 4h ago</div></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="row row-b" style="opacity:0.6;">
+            <div class="avatar" style="width:36px;height:36px;border:2px solid var(--border-s);color:var(--text-3);font-size:12px;">DV</div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Dev</div><div style="font-size:11px;color:var(--text-3);">Quiet for 5 days</div></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
 
-          <div style="font-size:16px;font-weight:600;margin-bottom:16px;">Close circle</div>
-
-          <div class="row row-border">
-            <div class="avatar" style="background:var(--red-bg);border:2px solid var(--red);color:var(--red-bd);">RA</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">Ravi</div>
-              <div style="font-size:11px;color:var(--text-2);">Need space · 1h ago</div>
-            </div>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <div class="row row-border">
-            <div class="avatar" style="background:var(--green-bg);border:2px solid var(--green-bd);color:var(--green-bd);">SK</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">Sara</div>
-              <div style="font-size:11px;color:var(--text-2);">Good · 2h ago</div>
-            </div>
-            <div class="msg-pill" style="margin-right:8px;">2 new</div>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <div class="row row-border">
-            <div class="avatar" style="background:var(--amber-bg);border:2px solid var(--amber-bd);color:var(--amber-bd);">JP</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">Jamie</div>
-              <div style="font-size:11px;color:var(--text-2);">Okay · 4h ago</div>
-            </div>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <div class="row row-border" style="opacity:0.65;">
-            <div class="avatar" style="border:2px solid var(--border-s);color:var(--text-3);">DV</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:500;">Dev</div>
-              <div style="font-size:11px;color:var(--text-3);">Quiet for 5 days</div>
-            </div>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-
-          <div class="divider" style="margin-top:8px;"></div>
+          <div class="divider" style="margin:12px 0;"></div>
           <div class="row">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            <span style="font-size:14px;">Share invite link</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <span style="font-size:13px;">Share invite link</span>
+          </div>
+          <div class="row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span style="font-size:13px;">Add members by @username</span>
           </div>
 
-          <button class="btn-danger" style="margin-top:auto;text-align:center;width:100%;">Leave circle</button>
+          <button class="btn-danger" style="margin-top:auto;text-align:center;width:100%;padding:8px 0;font-size:13px;">Leave circle</button>
         </div>
       </div>
+      <div class="phone-sub">Circle detail · sorted by recency · Sara shows unread count · Dev faded · invite link</div>
     </div>
 
-    <!-- CHAT PAGE (Sara) -->
-    <div>
-      <div class="screen-badge">Screen 12</div>
-      <div class="flow-label">Chat — tap Sara's card on Home or Circle page</div>
+    <!-- S13: CHAT -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 13</span>
       <div class="phone">
         <div class="phone-notch"></div>
-        <div class="screen" style="padding-bottom:16px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-            <button class="back-btn" style="margin-right:0;">
+        <div class="screen" style="padding:16px 14px 14px;">
+
+          <!-- FIXED HEADER -->
+          <div class="chat-header">
+            <button class="back-btn" style="padding:0;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
-            <div class="avatar" style="background:var(--green-bg);border:2px solid var(--green-bd);color:var(--green-bd);">SK</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;font-weight:600;">Sara</div>
-              <div style="font-size:11px;color:var(--green);">● Good · 2h ago</div>
+            <div class="avatar" style="width:34px;height:34px;background:var(--accent-l);border:2px solid var(--green-bd);color:var(--green-bd);font-size:11px;flex-shrink:0;">SK</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:14px;font-weight:700;line-height:1.2;">Sara</div>
+              <div style="font-size:11px;color:var(--accent-m);display:flex;align-items:center;gap:4px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-m);flex-shrink:0;"></span>
+                Good · 2h ago
+              </div>
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
           </div>
 
-          <div class="chat-area" style="max-height:280px;">
-            <div class="system-msg">Sara updated her state: good ↑</div>
-            <div class="bubble bubble-in">hey, sorry for the radio silence this week 😅</div>
-            <div class="bubble bubble-out">no worries — saw you'd been stretched. glad you're good now</div>
-            <div class="bubble bubble-in">yeah it's been a lot. feeling way better today</div>
-            <div class="bubble bubble-out">good 💚 here if you need anything</div>
+          <!-- SCROLLABLE MESSAGES -->
+          <div class="chat-messages">
+            <div class="sys-msg">Thursday, 10:41 AM</div>
+            <div class="sys-msg">Sara updated her state to: <strong>good</strong> ↑</div>
+            <div class="bubble b-in">hey, sorry for the radio silence this week 😅</div>
+            <div class="b-time">10:42</div>
+            <div class="bubble b-out">no worries — saw you were stretched. glad you're doing better</div>
+            <div class="b-time" style="align-self:flex-end;">10:44</div>
+            <div class="bubble b-in">yeah it's been a lot. feeling way better today though</div>
+            <div class="b-time">10:45</div>
+            <div class="bubble b-out">good 💚 here if you need anything</div>
+            <div class="b-time" style="align-self:flex-end;">10:45</div>
+            <div class="bubble b-in">thank you, that actually means a lot</div>
+            <div class="b-time">10:46</div>
           </div>
 
-          <div style="display:flex;gap:8px;overflow-x:auto;margin:12px 0 10px;padding-bottom:2px;">
-            <button class="quick-chip">Thinking of you</button>
-            <button class="quick-chip">Here if you need me</button>
-            <button class="quick-chip">💚</button>
+          <!-- QUICK REPLIES -->
+          <div class="chat-chips">
+            <button class="chip">Thinking of you</button>
+            <button class="chip">Here if needed</button>
+            <button class="chip">💚</button>
+            <button class="chip">Take care</button>
           </div>
 
-          <div style="display:flex;gap:8px;align-items:center;">
-            <input class="input" type="text" placeholder="Send a message" style="flex:1;" />
-            <button style="width:36px;height:36px;border-radius:50%;background:var(--accent);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <!-- FIXED INPUT -->
+          <div class="chat-input-row">
+            <input class="chat-input" type="text" placeholder="Message Sara…" />
+            <button class="send-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
           </div>
+
         </div>
       </div>
+      <div class="phone-sub">Chat · fixed header with live state · scrollable messages with timestamps · quick replies · fixed input bar</div>
     </div>
 
   </div><!-- /screen-row -->
 
 
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SECTION 4: SETTINGS & PREMIUM                  -->
-  <!-- ══════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- FLOW 4 · SETTINGS & PREMIUM                                        -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
   <div class="section-label">④ Settings · Premium upgrade</div>
   <div class="screen-row">
 
-    <!-- SETTINGS -->
-    <div>
-      <div class="screen-badge">Screen 13</div>
-      <div class="flow-label">Settings — gear icon on Home</div>
+    <!-- S14: SETTINGS -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 14</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
-          <div class="screen-header">
+          <div class="screen-hdr">
             <span class="screen-title">Settings</span>
           </div>
 
-          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:20px;">
-            <div class="avatar" style="background:var(--green-bg);color:var(--green);border:2px solid var(--green);width:44px;height:44px;">Me</div>
+          <div class="row" style="background:var(--bg);border-radius:10px;padding:10px 12px;margin-bottom:14px;border:1.5px solid var(--border);flex-shrink:0;">
+            <div class="avatar" style="width:40px;height:40px;background:var(--accent-l);color:var(--accent);border:2px solid var(--accent);font-size:12px;">Me</div>
             <div style="flex:1;">
-              <div style="font-size:14px;font-weight:600;">You</div>
+              <div style="font-size:13px;font-weight:600;">You</div>
               <div style="font-size:11px;color:var(--text-3);">@your.username · Edit profile</div>
             </div>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
 
-          <div style="font-size:11px;font-weight:600;color:var(--text-3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;">Circles</div>
-          <div class="row row-border">
-            <span style="font-size:14px;flex:1;">Close circle</span>
-            <span style="font-size:11px;color:var(--text-3);">4 members</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <div class="row row-border" style="color:var(--accent);">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            <span style="font-size:14px;">Create new circle</span>
-          </div>
+          <div class="sec-lbl">Circles</div>
+          <div class="row row-b"><span style="font-size:13px;flex:1;">Close circle</span><span style="font-size:11px;color:var(--text-3);">4 members</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" style="margin-left:6px;"><polyline points="9 18 15 12 9 6"/></svg></div>
+          <div class="row row-b" style="color:var(--accent);"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span style="font-size:13px;">Create new circle</span></div>
 
-          <div style="font-size:11px;font-weight:600;color:var(--text-3);letter-spacing:0.06em;text-transform:uppercase;margin:14px 0 6px;">Notifications</div>
-          <div class="toggle-row row-border">
-            <span style="font-size:14px;flex:1;">Notify when someone goes red</span>
-            <div class="toggle toggle-on"><div class="toggle-thumb"></div></div>
-          </div>
-          <div class="toggle-row row-border">
-            <span style="font-size:14px;flex:1;">Notify for every update</span>
-            <div class="toggle toggle-off"><div class="toggle-thumb"></div></div>
-          </div>
+          <div class="sec-lbl">Notifications</div>
+          <div class="row row-b"><span style="font-size:13px;flex:1;line-height:1.3;">Notify when someone goes<br><span style="color:var(--red);font-weight:500;">Need space</span> or <span style="color:var(--red);font-weight:500;">Stretched</span></span><div class="toggle toggle-on"><div class="toggle-thumb"></div></div></div>
+          <div class="row row-b"><span style="font-size:13px;flex:1;">Notify for every update</span><div class="toggle toggle-off"><div class="toggle-thumb"></div></div></div>
 
-          <div style="font-size:11px;font-weight:600;color:var(--text-3);letter-spacing:0.06em;text-transform:uppercase;margin:14px 0 6px;">Account</div>
-          <div class="row row-border">
-            <span style="font-size:14px;flex:1;">Privacy</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-          <div class="row row-border">
-            <span style="font-size:14px;flex:1;">Premium</span>
-            <span class="tag tag-pro">Upgrade</span>
-          </div>
-          <div class="row row-border">
-            <span style="font-size:14px;flex:1;">Help and support</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
+          <div class="sec-lbl">Account</div>
+          <div class="row row-b"><span style="font-size:13px;flex:1;">Privacy</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+          <div class="row row-b"><span style="font-size:13px;flex:1;">Premium</span><span style="font-size:10px;font-weight:700;background:var(--pro-bg);color:var(--pro);padding:3px 9px;border-radius:999px;">Upgrade</span></div>
+          <div class="row row-b"><span style="font-size:13px;flex:1;">Help &amp; support</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
 
-          <button class="btn-danger" style="margin-top:auto;text-align:center;width:100%;">Log out</button>
+          <button class="btn-danger" style="margin-top:auto;text-align:center;width:100%;padding:8px 0;font-size:13px;">Log out</button>
         </div>
       </div>
+      <div class="phone-sub">Settings · gear icon on Home · circle management · notification toggles · premium entry · profile edit</div>
     </div>
 
-    <!-- PREMIUM -->
-    <div>
-      <div class="screen-badge">Screen 14</div>
-      <div class="flow-label">Premium upgrade — Settings → Premium</div>
+    <!-- S15 / S16 combined: PREMIUM -->
+    <div class="phone-wrap">
+      <span class="badge">Screen 15</span>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="screen">
-          <div style="display:flex;justify-content:flex-end;margin-bottom:10px;">
+          <div style="display:flex;justify-content:flex-end;flex-shrink:0;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </div>
 
-          <div style="text-align:center;margin-bottom:16px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:var(--pro-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--pro)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div style="text-align:center;margin-bottom:14px;flex-shrink:0;">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--pro-bg);display:flex;align-items:center;justify-content:center;margin:6px auto 8px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pro)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </div>
-            <div style="font-size:17px;font-weight:600;">Capacity Premium</div>
+            <div style="font-size:16px;font-weight:700;">Capacity Premium</div>
           </div>
 
-          <div class="feat-row">
-            <span class="feat-icon">✓</span>
-            <div><div class="feat-text">Unlimited circles</div><div class="feat-sub">Free plan: 1 circle only</div></div>
-          </div>
-          <div class="feat-row">
-            <span class="feat-icon">✓</span>
-            <div><div class="feat-text">Custom states & colors</div><div class="feat-sub">Rename and recolor any state</div></div>
-          </div>
-          <div class="feat-row">
-            <span class="feat-icon">✓</span>
-            <div><div class="feat-text">30-day trend history</div><div class="feat-sub">See patterns over time</div></div>
-          </div>
-          <div class="feat-row">
-            <span class="feat-icon">✓</span>
-            <div><div class="feat-text">Calendar & DND sync</div><div class="feat-sub">Auto-sets state from your schedule</div></div>
-          </div>
+          <div class="plan-feat"><span class="plan-check">✓</span><div><div style="font-size:13px;font-weight:500;">Unlimited circles</div><div style="font-size:11px;color:var(--text-3);">Free: 1 circle only</div></div></div>
+          <div class="plan-feat"><span class="plan-check">✓</span><div><div style="font-size:13px;font-weight:500;">Custom states &amp; colors</div><div style="font-size:11px;color:var(--text-3);">Rename, recolor any state</div></div></div>
+          <div class="plan-feat"><span class="plan-check">✓</span><div><div style="font-size:13px;font-weight:500;">30-day trend history</div><div style="font-size:11px;color:var(--text-3);">Spot weekly patterns</div></div></div>
+          <div class="plan-feat"><span class="plan-check">✓</span><div><div style="font-size:13px;font-weight:500;">Calendar &amp; DND sync</div><div style="font-size:11px;color:var(--text-3);">Auto-sets state from schedule</div></div></div>
 
-          <div class="divider" style="margin:12px 0;"></div>
+          <div class="divider" style="margin:12px 0;flex-shrink:0;"></div>
 
-          <div style="display:flex;background:var(--bg);border-radius:var(--radius-s);padding:3px;margin-bottom:12px;">
-            <button style="flex:1;padding:7px 0;border-radius:6px;font-size:13px;font-weight:600;background:var(--surface);border:1px solid var(--border);cursor:pointer;">Yearly</button>
-            <button style="flex:1;padding:7px 0;border-radius:6px;font-size:13px;color:var(--text-2);background:none;border:none;cursor:pointer;">Monthly</button>
+          <div style="display:flex;background:var(--bg);border-radius:var(--r-s);padding:3px;margin-bottom:10px;flex-shrink:0;">
+            <button style="flex:1;padding:6px;border-radius:6px;font-size:12px;font-weight:600;background:var(--surface);border:1px solid var(--border);cursor:pointer;font-family:inherit;">Yearly — save 43%</button>
+            <button style="flex:1;padding:6px;border-radius:6px;font-size:12px;color:var(--text-2);background:none;border:none;cursor:pointer;font-family:inherit;">Monthly</button>
           </div>
-          <div style="text-align:center;margin-bottom:4px;">
-            <span style="font-size:22px;font-weight:600;">$3.99</span>
-            <span style="font-size:13px;color:var(--text-2);">/mo</span>
+          <div style="text-align:center;margin-bottom:3px;flex-shrink:0;">
+            <span style="font-size:20px;font-weight:700;">$3.99</span>
+            <span style="font-size:12px;color:var(--text-2);">/mo · billed $47.99/yr</span>
           </div>
-          <div style="text-align:center;font-size:12px;color:var(--green);margin-bottom:14px;">Save 43% · billed $47.99/yr</div>
+          <div style="text-align:center;font-size:11px;color:var(--accent-m);margin-bottom:10px;flex-shrink:0;">7-day free trial · cancel anytime</div>
 
-          <button class="btn btn-primary" style="margin-bottom:8px;">Start 7-day free trial</button>
-          <button class="btn btn-ghost" style="margin-bottom:8px;">Continue with free plan</button>
-          <div style="text-align:center;font-size:11px;color:var(--text-3);">7 days free, then $47.99/yr. Cancel anytime.</div>
+          <button class="btn btn-primary" style="margin-bottom:8px;font-size:13px;">Start free trial</button>
+          <button class="btn btn-ghost" style="margin-bottom:6px;font-size:13px;">Continue with free plan</button>
 
-          <button style="margin-top:auto;border:none;background:none;color:var(--text-3);font-size:12px;cursor:pointer;text-align:center;width:100%;padding-top:12px;">Restore purchase</button>
+          <button style="margin-top:auto;border:none;background:none;color:var(--text-3);font-size:11px;cursor:pointer;text-align:center;width:100%;padding-top:4px;font-family:inherit;">Restore purchase</button>
         </div>
       </div>
+      <div class="phone-sub">Premium · yearly vs monthly toggle · feature list with free plan limits · trial CTA + free plan opt-out both visible</div>
     </div>
 
   </div><!-- /screen-row -->
 
 
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- STATE LEGEND                                   -->
-  <!-- ══════════════════════════════════════════════ -->
-  <div class="section-label">State reference — the 5 states, what each means</div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:48px;">
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 18px;background:var(--green-bg);border:1px solid var(--green-bd);border-radius:var(--radius);flex:1;min-width:150px;">
-      <span style="width:12px;height:12px;border-radius:50%;background:var(--green);flex-shrink:0;"></span>
-      <div><div style="font-size:14px;font-weight:500;">Good</div><div style="font-size:11px;color:var(--text-2);">Full capacity — ask me things</div></div>
+  <!-- STATE LEGEND -->
+  <div class="section-label">State reference</div>
+  <div class="legend-grid">
+    <div class="legend-item" style="background:var(--accent-l);border:1px solid var(--green-bd);">
+      <span style="width:12px;height:12px;border-radius:50%;background:var(--accent-m);flex-shrink:0;"></span>
+      <div><div style="font-size:13px;font-weight:600;">Good</div><div style="font-size:11px;color:var(--text-2);">Full capacity — ask me things</div></div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 18px;background:var(--amber-bg);border:1px solid var(--amber-bd);border-radius:var(--radius);flex:1;min-width:150px;">
+    <div class="legend-item" style="background:var(--amber-bg);border:1px solid var(--amber-bd);">
       <span style="width:12px;height:12px;border-radius:50%;background:var(--amber);flex-shrink:0;"></span>
-      <div><div style="font-size:14px;font-weight:500;">Okay</div><div style="font-size:11px;color:var(--text-2);">Functioning — keep it light</div></div>
+      <div><div style="font-size:13px;font-weight:600;">Okay</div><div style="font-size:11px;color:var(--text-2);">Functioning — keep it light</div></div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 18px;background:var(--coral-bg);border:1px solid var(--coral);border-radius:var(--radius);flex:1;min-width:150px;">
+    <div class="legend-item" style="background:var(--coral-bg);border:1px solid var(--coral);">
       <span style="width:12px;height:12px;border-radius:50%;background:var(--coral);flex-shrink:0;"></span>
-      <div><div style="font-size:14px;font-weight:500;">Stretched</div><div style="font-size:11px;color:var(--text-2);">Running thin — be brief</div></div>
+      <div><div style="font-size:13px;font-weight:600;">Stretched</div><div style="font-size:11px;color:var(--text-2);">Running thin — be brief</div></div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 18px;background:var(--red-bg);border:1px solid var(--red-bd);border-radius:var(--radius);flex:1;min-width:150px;">
+    <div class="legend-item" style="background:var(--red-bg);border:1px solid var(--red-bd);">
       <span style="width:12px;height:12px;border-radius:50%;background:var(--red);flex-shrink:0;"></span>
-      <div><div style="font-size:14px;font-weight:500;">Need space</div><div style="font-size:11px;color:var(--text-2);">Don't initiate — I'll come to you</div></div>
+      <div><div style="font-size:13px;font-weight:600;">Need space</div><div style="font-size:11px;color:var(--text-2);">Don't initiate — I'll reach out</div></div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;padding:12px 18px;background:var(--bg);border:1px solid var(--border-s);border-radius:var(--radius);flex:1;min-width:150px;">
+    <div class="legend-item" style="background:var(--bg);border:1px solid var(--border-s);">
       <span style="width:12px;height:12px;border-radius:50%;background:var(--text-3);flex-shrink:0;"></span>
-      <div><div style="font-size:14px;font-weight:500;">Off the grid</div><div style="font-size:11px;color:var(--text-2);">Not sharing right now</div></div>
+      <div><div style="font-size:13px;font-weight:600;">Off the grid</div><div style="font-size:11px;color:var(--text-2);">Not sharing right now</div></div>
     </div>
   </div>
 
 
-  <!-- ══════════════════════════════════════════════ -->
-  <!-- SUMMARY                                        -->
-  <!-- ══════════════════════════════════════════════ -->
-  <div class="summary-wrap">
-    <div class="summary-logo">
-      <div class="ring"><div class="dot"></div></div>
-      <span>Capacity</span>
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+      <div style="width:38px;height:38px;border-radius:50%;border:2.5px solid var(--accent);display:flex;align-items:center;justify-content:center;"><div style="width:13px;height:13px;border-radius:50%;background:var(--accent);"></div></div>
+      <span style="font-size:18px;font-weight:700;">Capacity</span>
     </div>
-
-    <div class="summary-headline">The quiet signal that tells the<br>people you love how you really are.</div>
-    <div class="summary-sub">
-      Capacity is a private, feed-free app that lets your closest circle — partner, family, best friends — see your real energy level at a glance, so nobody has to ask "how are you?" and nobody has to perform an answer. One tap, one color, no feed.
-    </div>
+    <div class="summary-head">The quiet signal that tells the people<br>you love how you really are.</div>
+    <div class="summary-sub">A private, feed-free app where your closest circle — partner, family, best friends — sees your real energy level at a glance. One tap, one color. No feed, no content, no performance. Just honest signal between people who actually care about each other.</div>
 
     <div class="summary-grid">
-
-      <div class="summary-card">
+      <div class="s-card">
         <h3>The Problem</h3>
-        <p>
-          <strong>"How are you?" is broken.</strong> We ask it out of habit and never answer it honestly. When a partner comes home drained and their spouse unloads a to-do list, it's not cruelty — it's missing information. There's no lightweight, honest, real-time signal for emotional bandwidth between people who love each other, so misreads happen constantly and silently accumulate into resentment.
-        </p>
+        <p><strong>"How are you?" is broken.</strong> We ask it out of habit and never answer honestly. When a partner comes home drained and their spouse unloads a to-do list, it's not cruelty — it's missing information. There's no lightweight, real-time honest signal for emotional bandwidth between people who love each other. Misreads accumulate silently into resentment.</p>
       </div>
-
-      <div class="summary-card">
+      <div class="s-card">
         <h3>Why Users Download It</h3>
-        <p>
-          Almost everyone has had this specific experience this week: wished the person they live with or love just <strong>knew</strong> before asking anything of them. The mechanic — tap a state, see their state — needs zero tutorial. It solves a named, felt, recurring pain and promises relief without a single conversation. That's a same-day download.
-        </p>
+        <p>Almost everyone has had this specific experience this week: wished the person they live with just <strong>knew</strong> before asking something of them. One-tap state setting needs zero tutorial. It solves a named, felt, recurring pain and promises relief without a single conversation — that's a same-day download.</p>
       </div>
-
-      <div class="summary-card">
+      <div class="s-card">
         <h3>Why They Return Daily</h3>
-        <p>
-          The use cases — checking your partner's state before calling, updating yours after a hard meeting — <strong>recur multiple times a day by nature.</strong> It's not a habit you build; it's a reflex that replaces the "how are you" text. The glance becomes as automatic as checking the weather before you leave the house.
-        </p>
+        <p>Checking your partner's state before calling, updating yours after a hard meeting — <strong>these recur multiple times a day by nature.</strong> It's not a habit you build; it's a reflex that replaces the "how are you?" text. The glance becomes as automatic as checking the weather.</p>
       </div>
-
-      <div class="summary-card">
+      <div class="s-card">
         <h3>The Viral Loop</h3>
-        <p>
-          <strong>The app is useless alone.</strong> Every new user must invite at least one person to unlock the home screen — that's the invite gate in onboarding step 2. Happy couples expand to families. Families add friends. Because you can only find people by username (no phone number exposed), the share link and username search are the two natural spread vectors, both low-friction and privacy-respecting.
-        </p>
+        <p><strong>The app is useless alone.</strong> Onboarding step 2 requires inviting at least one person before the home screen unlocks — the mandatory invite gate. Username-only discovery means a share link is the natural spread vector. Happy couples expand to families. Families pull in friends. Every new user brings at least one more.</p>
       </div>
-
-      <div class="summary-card">
+      <div class="s-card">
         <h3>The USP</h3>
-        <div style="margin-top:8px;">
-          <span class="usp-pill">No feed</span>
-          <span class="usp-pill">No content</span>
-          <span class="usp-pill">No likes</span>
-          <span class="usp-pill">No streaks</span>
-          <span class="usp-pill">No performance</span>
-          <span class="usp-pill">Username-only privacy</span>
-          <span class="usp-pill">One tap to update</span>
-          <span class="usp-pill">Quiet notifications</span>
+        <div style="margin:10px 0;">
+          <span class="usp-pill">No feed</span><span class="usp-pill">No ads</span><span class="usp-pill">No likes</span><span class="usp-pill">No content</span><span class="usp-pill">No streaks</span><span class="usp-pill">No phone number needed</span><span class="usp-pill">Username privacy</span><span class="usp-pill">One tap to update</span><span class="usp-pill">Non-alarming notifications</span>
         </div>
-        <p style="margin-top:12px;">It is <strong>structurally the opposite of Instagram</strong> — a private utility, not a public performance. That positioning is both the product's identity and its defensible moat against Big Tech, whose ad businesses require engagement and attention Capacity explicitly refuses to manufacture.</p>
+        <p>Structurally the <strong>opposite of Instagram</strong> — a private utility, not public performance. That positioning is the product's identity and its moat against Big Tech, whose ad revenue requires the engagement Capacity explicitly refuses to manufacture.</p>
       </div>
-
-      <div class="summary-card">
-        <h3>Why Users Pay</h3>
-        <p>
-          The free tier is complete for one relationship. Premium ($3.99/mo or $47.99/yr) unlocks:
-        </p>
-        <ul style="font-size:13px;color:var(--text-2);padding-left:16px;margin-top:8px;line-height:2;">
+      <div class="s-card">
+        <h3>Why Users Pay — $3.99/mo</h3>
+        <ul style="font-size:13px;color:var(--text-2);padding-left:16px;line-height:2.2;">
           <li><strong>Unlimited circles</strong> — family AND friends AND work</li>
-          <li><strong>Custom states</strong> — rename and recolor to match your relationship's vocabulary</li>
-          <li><strong>30-day trends</strong> — spot patterns ("Jamie is stretched every Sunday")</li>
-          <li><strong>Calendar sync</strong> — auto-sets your state from your schedule, zero effort</li>
+          <li><strong>Custom states</strong> — your relationship's own vocabulary</li>
+          <li><strong>30-day trends</strong> — "Jamie is always stretched on Sundays"</li>
+          <li><strong>Calendar sync</strong> — auto-set from your schedule, zero effort</li>
         </ul>
-        <p style="margin-top:8px;">Users pay because the free tier proves the value so clearly that unlocking it for every relationship they care about is an obvious next step.</p>
+        <p style="margin-top:8px;">Free tier proves the value so clearly that unlocking every relationship feels obvious.</p>
       </div>
-
-      <div class="summary-card">
-        <h3>Why It Can Be a Billion-Dollar Company</h3>
-        <p>
-          <strong>Every close relationship on earth is the market.</strong> At even 5M paying households at $4/mo that's $240M ARR — and the mechanics generalize globally across every culture that has close relationships. The caregiving vertical (elderly parents + adult children) commands 3–5× higher willingness to pay and is massively underserved. Aggregated, anonymized state-pattern data is a research and wellness industry asset. None of this requires advertising.
-        </p>
+      <div class="s-card">
+        <h3>The Billion-Dollar Path</h3>
+        <p><strong>Every close relationship on earth is the market.</strong> 5M paying households at $4/mo = $240M ARR. The mechanic generalizes globally across every culture. The eldercare vertical (adult children + aging parents) has 3–5× higher willingness to pay and is massively underserved. Aggregated, anonymized state-pattern data is a research asset. Zero advertising required.</p>
       </div>
-
-      <div class="summary-card">
+      <div class="s-card">
         <h3>Why It's Hard to Copy</h3>
-        <p>
-          <strong>Big Tech can't build this faithfully</strong> — their entire revenue model requires feeds, engagement, and attention that Capacity structurally refuses to manufacture. A clone by Meta would have ads, read receipts, and engagement mechanics within months — which breaks the product's core promise. The real moat is the small trusted circle graph: once your partner, parents, and best friends are in, switching means re-recruiting every person you love. Nobody does that.
-        </p>
+        <p><strong>Big Tech can't build this faithfully.</strong> Their revenue requires feeds, engagement, and ad-monetized attention — Capacity structurally refuses to manufacture any of it. A Meta clone would have read receipts, engagement nudges, and ads within months, breaking the core promise. The real moat: once your partner, parents, and best friends are inside, <strong>switching means re-recruiting everyone you love.</strong></p>
       </div>
-
     </div>
 
     <div class="summary-divider"></div>
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-      <div style="font-size:13px;color:var(--text-3);">Prototype covers 14 screens across 4 flows — Auth, Onboarding, Core, Settings & Premium</div>
-      <div style="font-size:12px;color:var(--text-3);">Capacity · Full design spec · All states documented above</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div style="font-size:12px;color:var(--text-3);">15 screens · 4 flows · Auth · OTP · Onboarding · Core · Settings · Premium</div>
+      <div style="font-size:12px;color:var(--text-3);">Capacity · Complete design spec</div>
     </div>
   </div>
 
 </div>
+
+<script>
+// OTP auto-advance for all .otp-wrap groups
+document.querySelectorAll('.otp-wrap').forEach(function(wrap) {
+  const boxes = Array.from(wrap.querySelectorAll('.otp-box'));
+
+  boxes.forEach(function(box, i) {
+    box.addEventListener('input', function(e) {
+      const val = e.target.value.replace(/\D/g, '');
+      e.target.value = val ? val[val.length - 1] : '';
+      if (val && i < boxes.length - 1) {
+        boxes[i + 1].focus();
+      }
+      if (val) box.classList.add('filled');
+      else box.classList.remove('filled');
+    });
+
+    box.addEventListener('keydown', function(e) {
+      if (e.key === 'Backspace' && !box.value && i > 0) {
+        boxes[i - 1].focus();
+        boxes[i - 1].value = '';
+        boxes[i - 1].classList.remove('filled');
+      }
+    });
+
+    box.addEventListener('paste', function(e) {
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (!text) return;
+      text.split('').slice(0, boxes.length - i).forEach(function(char, j) {
+        if (boxes[i + j]) {
+          boxes[i + j].value = char;
+          boxes[i + j].classList.add('filled');
+        }
+      });
+      const next = Math.min(i + text.length, boxes.length - 1);
+      boxes[next].focus();
+    });
+  });
+});
+
+// OTP countdown timer (Screen 3 only)
+(function() {
+  var el = document.getElementById('t1');
+  if (!el) return;
+  var secs = 42;
+  var iv = setInterval(function() {
+    secs--;
+    if (secs <= 0) {
+      clearInterval(iv);
+      el.parentElement.innerHTML = '<span class="link" style="font-size:12px;">Resend code</span>';
+      return;
+    }
+    var m = Math.floor(secs / 60);
+    var s = secs % 60;
+    el.textContent = m + ':' + (s < 10 ? '0' + s : s);
+  }, 1000);
+})();
+</script>
 </body>
 </html>
