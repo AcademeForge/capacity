@@ -1,122 +1,356 @@
-# 🌿 Capacity
+# Capacity
 
-> **Tell the people you love how you actually are — with one tap.**
+> **The quiet signal that tells the people you love how you really are.**
 
-Capacity is a private, feed-free relationship app that lets your closest people see your emotional availability at a glance.
+Capacity is a private, feed-free relationship app that helps partners, close friends, and families instantly understand each other's emotional availability.
 
-No feeds. No likes. No followers. No algorithms.
+Instead of asking **"How are you?"**, users simply update their capacity with one tap. Their closest circle immediately knows whether they're available, overwhelmed, or simply need space.
 
-Just one tap.
-
----
-
-## ✨ Overview
-
-Capacity replaces the repetitive question:
-
-> **"How are you?"**
-
-with a simple capacity status that communicates your emotional bandwidth instantly.
-
-Whether you're having a great day or need some space, the people who matter most always know your current state.
+Designed as a quiet utility—not another social network—Capacity removes the pressure of constant communication while improving understanding between people who matter most.
 
 ---
 
-# 📱 Features
+# Prototype Overview
+
+This repository contains a complete high-fidelity prototype of **Capacity**, showcasing the complete user journey from authentication to premium features.
+
+The prototype demonstrates every major screen and interaction required for a production-ready MVP.
+
+### Built With
+
+- HTML5
+- CSS3
+- Responsive Layout
+- Flexbox & CSS Grid
+- SVG Icons
+- Google Fonts (Inter)
+- Mobile-first Design
+
+---
+
+# Core Features
 
 ## Authentication
+
+Secure authentication flow including:
 
 - Sign In
 - Create Account
 - Email Verification (OTP)
 - Forgot Password
-- Reset Password
+- Password Reset
+- New Password Creation
 
 ---
 
 ## Onboarding
 
-Three-step onboarding:
+A simple three-step onboarding experience:
 
 1. Create your first Circle
-2. Invite friends
-3. Choose your first Capacity state
+2. Invite members
+3. Set your first Capacity state
+
+The onboarding intentionally requires inviting another person because Capacity only becomes valuable once it is shared.
 
 ---
 
 ## Home Dashboard
 
-- View your current state
-- View circle members
-- Member status colors
+The Home screen provides an overview of your private circle.
+
+Features include:
+
+- Your current state
+- Circle overview
+- Member availability
 - Recent updates
-- Message indicators
+- New message indicators
+- Quick access to chats
 
 ---
 
 ## Capacity States
 
-| State | Meaning |
-|--------|---------|
-| 🟢 Good | Full capacity |
-| 🟡 Okay | Keep it light |
-| 🟠 Stretched | Running low |
-| 🔴 Need Space | Please don't initiate |
-| ⚪ Off the Grid | Not sharing right now |
+Capacity uses five emotional availability states.
+
+| State | Description |
+|--------|-------------|
+| 🟢 Good | Full emotional capacity |
+| 🟡 Okay | Available, but keep things light |
+| 🟠 Stretched | Busy or mentally overloaded |
+| 🔴 Need Space | Prefer not to be contacted |
+| ⚪ Off the Grid | Temporarily unavailable |
+
+---
+
+## State Updates
+
+Users can update their current state in one tap.
+
+Optional features include:
+
+- Short status note
+- Automatic state updates
+- Calendar synchronization
+- Smart recommendations
 
 ---
 
 ## Circle Management
 
+Each user can manage one or more private circles.
+
+Available actions:
+
 - Create circles
 - Invite members
 - Username search
 - Share invite links
+- Remove members
 - Leave circles
 
 ---
 
-## Chat
+## Private Chat
 
-- Private messaging
+Capacity includes lightweight one-to-one conversations.
+
+Features:
+
 - Live status indicator
+- Status-aware messaging
 - Quick replies
-- Context-aware conversations
+- Private conversations
+- Message history
 
 ---
 
 ## Settings
 
+Manage your account with:
+
 - Profile
-- Notifications
-- Privacy
-- Premium
+- Username
+- Circle Management
+- Notification Preferences
+- Privacy Settings
+- Premium Subscription
 - Help & Support
 
 ---
 
 ## Premium
 
-Unlock:
+Premium expands Capacity with:
 
-- Unlimited circles
-- Custom states
-- Calendar sync
-- Trend history
-- Automatic status updates
-
----
-
-# 🛠 Built With
-
-- HTML5
-- CSS3
-- Responsive Design
-- Google Fonts (Inter)
+- Unlimited Circles
+- Custom Capacity States
+- Custom Colors
+- 30-Day History
+- Calendar Integration
+- Automatic Status Updates
+- Advanced Personalization
 
 ---
 
-# 📂 Project Structure
+# Complete Prototype
+
+### Authentication
+
+1. Welcome Back
+2. Create Account
+3. Verify Email
+4. Forgot Password
+5. Enter Reset Code
+6. Create New Password
+
+---
+
+### Onboarding
+
+7. Create Circle
+8. Invite Members
+9. Select First Capacity State
+
+---
+
+### Main Application
+
+10. Home Dashboard
+11. Update Capacity
+12. Circle Details
+13. Private Chat
+
+---
+
+### Account
+
+14. Settings
+15. Premium Upgrade
+
+---
+
+# Design System
+
+## Primary Colors
+
+Primary
+
+```css
+#3B6D11
+```
+
+Background
+
+```css
+#F6F5F2
+```
+
+Surface
+
+```css
+#FFFFFF
+```
+
+Text
+
+```css
+#1A1916
+```
+
+---
+
+## Capacity Colors
+
+Good
+
+```css
+#639922
+```
+
+Okay
+
+```css
+#BA7517
+```
+
+Stretched
+
+```css
+#D75A2E
+```
+
+Need Space
+
+```css
+#A12C2C
+```
+
+Off the Grid
+
+```css
+#9A9793
+```
+
+---
+
+## Typography
+
+Font
+
+```text
+Inter
+```
+
+Weights
+
+- 300
+- 400
+- 500
+- 600
+- 700
+
+---
+
+# Product Philosophy
+
+Capacity exists to reduce emotional friction.
+
+Rather than encouraging more conversation, it encourages better timing.
+
+The product intentionally avoids:
+
+- Infinite feeds
+- Likes
+- Followers
+- Public profiles
+- Comments
+- Engagement algorithms
+- Notifications for attention
+- Social pressure
+
+Instead, it focuses on one simple question:
+
+> **"How much emotional capacity do I have right now?"**
+
+---
+
+# User Journey
+
+```text
+Sign In / Create Account
+            │
+            ▼
+     Email Verification
+            │
+            ▼
+      Create Circle
+            │
+            ▼
+      Invite Members
+            │
+            ▼
+     Select First State
+            │
+            ▼
+      Home Dashboard
+            │
+    ┌───────┼────────┐
+    ▼       ▼        ▼
+  Chat   Circles   Settings
+                    │
+                    ▼
+                 Premium
+```
+
+---
+
+# Premium Strategy
+
+The free version is intentionally complete for one relationship.
+
+Premium expands Capacity without restricting core functionality.
+
+### Free
+
+- One Circle
+- Five Capacity States
+- Private Chat
+- Notifications
+
+### Premium
+
+- Unlimited Circles
+- Custom States
+- Calendar Sync
+- Mood History
+- Automation
+- Advanced Personalization
+
+---
+
+# Repository Structure
 
 ```text
 capacity/
@@ -124,140 +358,63 @@ capacity/
 ├── index.html
 ├── README.md
 ├── assets/
-│   ├── images/
 │   ├── icons/
+│   ├── images/
 │   └── fonts/
 └── screenshots/
 ```
 
 ---
 
-# 🚀 Getting Started
+# Future Roadmap
 
-Clone the repository
-
-```bash
-git clone https://github.com/yourusername/capacity.git
-```
-
-Go inside the folder
-
-```bash
-cd capacity
-```
-
-Open the project
-
-```bash
-open index.html
-```
-
-or simply open **index.html** in your browser.
-
----
-
-# 📱 Prototype Flow
-
-```
-Authentication
-      │
-      ▼
-Email Verification
-      │
-      ▼
-Onboarding
-      │
-      ▼
-Create Circle
-      │
-      ▼
-Invite Members
-      │
-      ▼
-Set Capacity
-      │
-      ▼
-Home
-      │
-      ├── Chat
-      ├── Circle
-      ├── Settings
-      └── Premium
-```
-
----
-
-# 🎨 Design System
-
-## Primary Color
-
-```css
-#3B6D11
-```
-
-## Background
-
-```css
-#F6F5F2
-```
-
-## Surface
-
-```css
-#FFFFFF
-```
-
-## Typography
-
-**Font**
-
-```
-Inter
-```
-
----
-
-# 🎯 Product Philosophy
-
-Capacity is intentionally different from traditional social apps.
-
-It avoids:
-
-- ❌ Infinite feeds
-- ❌ Likes
-- ❌ Followers
-- ❌ Comments
-- ❌ Streaks
-- ❌ Public profiles
-- ❌ Ads
-
-Instead it focuses on one thing:
-
-> **Helping people understand each other's emotional availability.**
-
----
-
-# 🔮 Future Roadmap
+Potential future enhancements:
 
 - Dark Mode
 - Push Notifications
 - Native Android App
 - Native iOS App
-- Web App
-- Calendar Integration
+- Progressive Web App
+- Apple Health Integration
+- Google Calendar Sync
 - Widgets
-- AI Suggestions
-- Mood History
+- AI Insights
+- Mood Analytics
 - Accessibility Improvements
 
 ---
 
-# 📄 License
+# Vision
 
-This project is a UI/UX prototype created for demonstration and development purposes.
+Capacity is not another messaging app.
+
+It is not another social platform.
+
+It is a private emotional availability layer that helps people understand one another before conversations even begin.
+
+One tap communicates what words often cannot.
 
 ---
 
-# ❤️ Capacity
+# License
 
-**Know someone's capacity before asking for it.**
+This project is provided as a UI/UX prototype and design reference.
+
+All branding, concepts, and visual assets remain the property of their respective creator.
+
+---
+
+## Built With
+
+- HTML5
+- CSS3
+- Responsive Design
+- Flexbox
+- CSS Grid
+- Google Fonts (Inter)
+
+---
+
+**Capacity**
+
+*Know someone's capacity before asking for it.*
